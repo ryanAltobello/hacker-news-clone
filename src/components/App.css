@@ -1,0 +1,46 @@
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+.content {
+  margin: auto;
+  height: 100%;
+  width: 80vw;
+  background-color: lightgray;
+}
+
+.header {
+  display: flex;
+  background-color: #20b2aa;
+  height: 70px;
+}
+
+#logo {
+  margin: auto 10px;
+  height: 60px;
+  width: 60px;
+}
+h3 {
+  margin: auto 20px auto 10px;
+  width: 150px;
+}
+.search {
+  background-color: white;
+  display: flex;
+  margin: auto 0;
+  height: 40px;
+  width: 60%;
+}
+#search-icon {
+  margin: auto 10px auto 10px;
+  height: 30px;
+  width: 30px;
+}
+input {
+  border: none;
+  outline: none;
+  height: 30px;
+  margin: auto 0;
+  width: 90%;
+}
