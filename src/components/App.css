@@ -12,8 +12,10 @@ body {
 
 .header {
   display: flex;
+  position: fixed;
   background-color: #20b2aa;
   height: 70px;
+  width: 80%;
 }
 
 #logo {
@@ -43,4 +45,23 @@ input {
   height: 30px;
   margin: auto 0;
   width: 90%;
+}
+
+.search-options-bar {
+  display: flex;
+  position: fixed;
+  top: 70px;
+  font-size: 1.1em;
+  align-items: center;
+  height: 50px;
+  width: 80%;
+  background-color: rgb(225, 229, 235);
+}
+.search-bar-text {
+  margin: auto 10px;
+}
+.search-options-bar select {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1em;
+  height: 25px;
 }

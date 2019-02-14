@@ -7,7 +7,7 @@ const Header = () => {
     <div className="header">
       <img id="logo" src={logo} alt="logo" />
       <h3>
-        Search Hacker News<span style={{ fontSize: "0.8em" }}>...clone</span>
+        Hacker News<span style={{ fontSize: "0.8em" }}>...clone</span>
       </h3>
       <div className="search">
         <img id="search-icon" src={search} alt="search icon" />

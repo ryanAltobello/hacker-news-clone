@@ -1,7 +1,12 @@
 import React from "react";
+import SearchOptions from "./SearchOptions";
 
-const Posts = () => {
-  return <div className="post-container" />;
+const PostContainer = () => {
+  return (
+    <div className="post-container">
+      <SearchOptions />
+    </div>
+  );
 };
 
-export default Posts;
+export default PostContainer;
