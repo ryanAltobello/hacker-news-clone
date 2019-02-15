@@ -1,17 +1,19 @@
 body {
   margin: 0;
+  padding: 0;
   font-family: "Montserrat", sans-serif;
 }
 
 .content {
   margin: auto;
   height: 100%;
-  width: 80vw;
+  width: 80%;
   background-color: lightgray;
 }
 
 .header {
   display: flex;
+  margin: auto;
   position: fixed;
   background-color: #20b2aa;
   height: 70px;
@@ -50,6 +52,7 @@ input {
 .search-options-bar {
   display: flex;
   position: fixed;
+  justify-content: space-between;
   top: 70px;
   font-size: 1.1em;
   align-items: center;
@@ -65,3 +68,50 @@ input {
   font-size: 1em;
   height: 25px;
 }
+.search-info {
+  font-size: 0.8em;
+  margin-right: 20px;
+}
+
+.post-list {
+  padding-top: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.post-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 20px;
+  min-height: 60px;
+  border-bottom: solid gray 1px;
+}
+.title {
+  margin-bottom: 3px;
+}
+
+.post-info {
+  font-size: 0.75em;
+  flex-wrap: nowrap;
+}
+a {
+  text-decoration: none;
+  color: olive;
+}
+a:hover {
+  border-bottom: 1px gray dotted;
+}
+
+@media (max-width: 1200px) {
+  .content,
+  .header,
+  .search-options-bar {
+    width: 100%;
+  }
+}
+/* @media (max-width: 850px) {
+  .post-content {
+    height: 80px;
+  }
+} */
