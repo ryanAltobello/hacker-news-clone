@@ -7,20 +7,7 @@ class SearchOptions extends React.Component {
     this.props.searchQuery(this.props.searchResponse.query, e.target.value);
   };
 
-  renderList = () => {
-    // console.log(this.props.searchResponse);
-    // if (!this.props.searchResponse.hits) {
-    //   return;
-    // } else {
-    //   let array = this.props.searchResponse.hits.sort((a, b) => {
-    //     return b.points - a.points;
-    //   });
-    //   console.log(array);
-    // }
-  };
-
   render() {
-    this.renderList();
     return (
       <div className="search-options-bar">
         <div className="search-options">
