@@ -1,10 +1,27 @@
 import React from "react";
 import { connect } from "react-redux";
-import { searchQuery } from "../actions";
+import { setSort, setFilter, searchQuery } from "../actions";
 
 class SearchOptions extends React.Component {
   handleChange = e => {
-    this.props.searchQuery(this.props.searchResponse.query, e.target.value);
+    const today = Math.floor(Date.now() / 1000);
+    let filter = null;
+    console.log(today);
+    if (e.target.name === "search-sort") {
+      this.props.setSort(e.target.value);
+    } else {
+      if (e.target.value === "all") {
+        filter = 0;
+      } else if (e.target.value === "day") {
+        filter = today - 86400;
+      } else if (e.target.value === "week") {
+        filter = today - 604800;
+      } else if (e.target.value === "month") {
+        filter = today - 2629800;
+      }
+      this.props.setFilter(filter);
+    }
+    this.props.searchQuery();
   };
 
   render() {
@@ -21,7 +38,11 @@ class SearchOptions extends React.Component {
             <option value="date">Date</option>
           </select>
           <span className="search-bar-text">for</span>
-          <select name="search-time-filter">
+          <select
+            name="search-filter"
+            defaultValue="all"
+            onChange={this.handleChange}
+          >
             <option value="all">All time</option>
             <option value="day">Last 24h</option>
             <option value="week">Past week</option>
@@ -40,5 +61,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { searchQuery }
+  { setSort, setFilter, searchQuery }
 )(SearchOptions);

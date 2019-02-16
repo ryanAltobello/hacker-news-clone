@@ -1,13 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-import { searchQuery } from "../actions";
+import { setQuery, searchQuery } from "../actions";
 
 import logo from "../images/logo.jpg";
 import search from "../images/search.png";
 
 class Header extends React.Component {
   handleChange = e => {
-    this.props.searchQuery(e.target.value);
+    this.props.setQuery(e.target.value);
+    this.props.searchQuery();
   };
 
   render() {
@@ -38,5 +39,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { searchQuery }
+  { setQuery, searchQuery }
 )(Header);
