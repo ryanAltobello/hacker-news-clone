@@ -1,9 +1,12 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { setSort, setFilter, searchQuery } from "../actions";
 
 class SearchOptions extends React.Component {
   handleChange = e => {
+    this.props.history.push(`/${this.props.searchResponse.params}`);
+
     const today = Math.floor(Date.now() / 1000);
     let filter = null;
     console.log(today);
@@ -59,7 +62,9 @@ const mapStateToProps = state => {
   return { searchResponse: state.searchResponse };
 };
 
-export default connect(
-  mapStateToProps,
-  { setSort, setFilter, searchQuery }
-)(SearchOptions);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { setSort, setFilter, searchQuery }
+  )(SearchOptions)
+);

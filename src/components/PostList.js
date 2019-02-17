@@ -49,11 +49,13 @@ class PostList extends React.Component {
               <a
                 href={`https://news.ycombinator.com/item?id=${el.objectID}`}
                 target="_blank"
+                rel="noopener noreferrer"
               >{`${el.points} points`}</a>
               &nbsp; {` | `} &nbsp;
               <a
                 href={`https://news.ycombinator.com/user?id=${el.author}`}
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 {el.author}
               </a>
@@ -61,9 +63,9 @@ class PostList extends React.Component {
               {this.timeCheck(testDate)}
               &nbsp; {` | `} &nbsp;
               <a
-                href={`https://news.ycombinator.com/item?id=${
-                  el.objectID
-                } target='_blank'`}
+                href={`https://news.ycombinator.com/item?id=${el.objectID}`}
+                target="_blank"
+                rel="noopener noreferrer"
               >{`${el.num_comments} comments`}</a>
               &nbsp; {` | `} &nbsp;
               <a href={el.url}>{el.url}</a>
