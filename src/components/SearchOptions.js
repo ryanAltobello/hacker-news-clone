@@ -1,15 +1,13 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { setSort, setFilter, searchQuery } from "../actions";
+import { setSort, setPage, setFilter, searchQuery } from "../actions";
 
 class SearchOptions extends React.Component {
   handleChange = e => {
-    this.props.history.push(`/${this.props.searchResponse.params}`);
-
+    this.props.setPage(0);
     const today = Math.floor(Date.now() / 1000);
     let filter = null;
-    console.log(today);
     if (e.target.name === "search-sort") {
       this.props.setSort(e.target.value);
     } else {
@@ -65,6 +63,6 @@ const mapStateToProps = state => {
 export default withRouter(
   connect(
     mapStateToProps,
-    { setSort, setFilter, searchQuery }
+    { setSort, setPage, setFilter, searchQuery }
   )(SearchOptions)
 );

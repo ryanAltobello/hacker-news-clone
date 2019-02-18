@@ -103,6 +103,39 @@ a:hover {
   border-bottom: 1px gray dotted;
 }
 
+.pagination-content {
+  display: flex;
+  height: 60px;
+  margin: auto;
+}
+.buttons {
+  display: flex;
+  margin: auto;
+  width: 40%;
+}
+.page {
+  height: 35px;
+  width: 35px;
+  color: rgb(105, 105, 105);
+  margin: auto;
+  font-weight: 800;
+  font-size: 0.95em;
+  outline: none;
+  box-shadow: none;
+  background: none;
+  border: 1px solid gray;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.active {
+  border: #19837e solid 2px;
+  color: #19837e;
+}
+.disabled {
+  color: darkgray;
+  cursor: auto;
+}
+
 @media (max-width: 1200px) {
   .content,
   .header,

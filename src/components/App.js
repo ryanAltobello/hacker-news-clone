@@ -10,7 +10,9 @@ class App extends React.Component {
   componentDidMount() {
     this.props.searchQuery();
   }
-
+  componentDidUpdate() {
+    window.scrollTo(0, 0);
+  }
   render() {
     return (
       <div className="content">
