@@ -1,12 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setQuery, searchQuery } from "../actions";
+import { setQuery, setPage, searchQuery } from "../actions";
 
 import logo from "../images/logo.jpg";
 import search from "../images/search.png";
 
 class Header extends React.Component {
   handleChange = e => {
+    this.props.setPage(0);
     this.props.setQuery(e.target.value);
     this.props.searchQuery();
   };
@@ -21,7 +22,7 @@ class Header extends React.Component {
         <div className="search">
           <img id="search-icon" src={search} alt="search icon" />
           <input
-            type="input"
+            type="text"
             onChange={this.handleChange}
             placeholder="Search stories..."
           />
@@ -33,11 +34,13 @@ class Header extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    searchResponse: state.searchResponse
+    searchResponse: state.searchResponse,
+    query: state.query,
+    page: state.page
   };
 };
 
 export default connect(
   mapStateToProps,
-  { setQuery, searchQuery }
+  { setQuery, setPage, searchQuery }
 )(Header);

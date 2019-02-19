@@ -1,3 +1,6 @@
+html {
+  overflow-y: scroll;
+}
 body {
   margin: 0;
   padding: 0;
@@ -93,7 +96,6 @@ input {
 
 .post-info {
   font-size: 0.75em;
-  flex-wrap: nowrap;
 }
 a {
   text-decoration: none;

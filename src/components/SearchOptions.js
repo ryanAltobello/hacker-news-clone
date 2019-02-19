@@ -1,5 +1,4 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { setSort, setPage, setFilter, searchQuery } from "../actions";
 
@@ -23,6 +22,9 @@ class SearchOptions extends React.Component {
       this.props.setFilter(filter);
     }
     this.props.searchQuery();
+
+    document.getElementsByClassName("select")[0].blur();
+    document.getElementsByClassName("select")[1].blur();
   };
 
   render() {
@@ -31,18 +33,22 @@ class SearchOptions extends React.Component {
         <div className="search-options">
           <span className="search-bar-text">Sort by</span>
           <select
+            className="select"
             name="search-sort"
             defaultValue="popularity"
             onChange={this.handleChange}
+            passive="true"
           >
             <option value="popularity">Popularity</option>
             <option value="date">Date</option>
           </select>
           <span className="search-bar-text">for</span>
           <select
+            className="select"
             name="search-filter"
             defaultValue="all"
             onChange={this.handleChange}
+            passive="true"
           >
             <option value="all">All time</option>
             <option value="day">Last 24h</option>
@@ -60,9 +66,7 @@ const mapStateToProps = state => {
   return { searchResponse: state.searchResponse };
 };
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    { setSort, setPage, setFilter, searchQuery }
-  )(SearchOptions)
-);
+export default connect(
+  mapStateToProps,
+  { setSort, setPage, setFilter, searchQuery }
+)(SearchOptions);

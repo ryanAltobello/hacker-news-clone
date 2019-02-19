@@ -1,8 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+// import { withRouter } from "react-router-dom";
 
 class PostList extends React.Component {
+  componentDidMount() {
+    window.onpopstate = e => {
+      window.history.back(e.state);
+    };
+  }
+
   timeCheck(testDate) {
     let timeAgo = "";
     const today = new Date(),
@@ -40,7 +46,6 @@ class PostList extends React.Component {
 
   renderList = () => {
     if (this.props.searchResponse.hits) {
-      this.props.history.push(`/${this.props.searchResponse.params}`);
       return this.props.searchResponse.hits.map(el => {
         const testDate = new Date(el.created_at_i * 1000);
 
@@ -86,4 +91,4 @@ const mapStateToProps = state => {
   return { searchResponse: state.searchResponse };
 };
 
-export default withRouter(connect(mapStateToProps)(PostList));
+export default connect(mapStateToProps)(PostList);

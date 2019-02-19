@@ -1,11 +1,5 @@
 import algoliaSearch from "../apis/algoliaSearch";
 
-export const setActive = active => {
-  return {
-    type: "SET_ACTIVE",
-    payload: active
-  };
-};
 export const setPage = page => {
   return {
     type: "SET_PAGE",
@@ -34,12 +28,15 @@ export const setQuery = query => {
 };
 
 export const searchQuery = () => async (dispatch, getState) => {
-  const query = getState().setQuery,
-    sort = getState().sortType,
+  const query = getState().query,
     noquery = !Object.keys(query).length;
 
   let filter = getState().filter,
+    sort = getState().sortType,
     page = getState().setPage;
+  if (!Object.keys(sort).length) {
+    sort = "popularity";
+  }
 
   if (isNaN(page)) {
     page = 0;
@@ -55,7 +52,7 @@ export const searchQuery = () => async (dispatch, getState) => {
       `/search_by_date?tags=story&numericFilters=created_at_i>${filter}&page=${page}`
     );
     dispatch({ type: "FETCH_POSTS", payload: response.data });
-  } else if (noquery) {
+  } else if (noquery && sort === "popularity") {
     // POPULARITY WITH NO QUERY
     const response = await algoliaSearch.get(
       `/search?tags=story&numericFilters=created_at_i>${filter}&page=${page}`
@@ -73,9 +70,12 @@ export const searchQuery = () => async (dispatch, getState) => {
       `/search?query=${query}&tags=story&numericFilters=points>0,created_at_i>${filter}&page=${page}`
     );
     dispatch({ type: "FETCH_POSTS", payload: response.data });
-  } else {
-    return;
   }
 
-  console.log(getState());
+  window.history.pushState(
+    getState(),
+    null,
+    `${getState().searchResponse.params}`
+  );
+  console.log(window.history.state);
 };

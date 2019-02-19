@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { searchQuery } from "../actions";
+import { setPage, searchQuery } from "../actions";
 
 import Header from "./Header";
 import PostContainer from "./PostContainer";
@@ -8,6 +8,7 @@ import "./App.css";
 
 class App extends React.Component {
   componentDidMount() {
+    this.props.setPage(0);
     this.props.searchQuery();
   }
   componentDidUpdate() {
@@ -25,11 +26,12 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    searchResponse: state.searchResponse
+    searchResponse: state.searchResponse,
+    page: state.setPage
   };
 };
 
 export default connect(
   mapStateToProps,
-  { searchQuery }
+  { setPage, searchQuery }
 )(App);
