@@ -16,13 +16,18 @@ body {
 
 .header {
   display: flex;
+  flex-direction: column;
   margin: auto;
   position: fixed;
   background-color: #20b2aa;
-  height: 70px;
+  height: 120px;
   width: 80%;
 }
-
+.header-bar {
+  display: flex;
+  width: 100%;
+  height: 75px;
+}
 #logo {
   margin: auto 10px;
   height: 60px;
@@ -54,13 +59,11 @@ input {
 
 .search-options-bar {
   display: flex;
-  position: fixed;
   justify-content: space-between;
-  top: 70px;
   font-size: 1.1em;
   align-items: center;
-  height: 50px;
-  width: 80%;
+  height: 60px;
+  width: 100%;
   background-color: rgb(225, 229, 235);
 }
 .search-bar-text {
