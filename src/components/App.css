@@ -116,7 +116,7 @@ a:hover {
 .buttons {
   display: flex;
   margin: auto;
-  width: 40%;
+  width: 50%;
 }
 .page {
   height: 35px;
@@ -148,8 +148,17 @@ a:hover {
     width: 100%;
   }
 }
-/* @media (max-width: 850px) {
+@media (max-width: 850px) {
   .post-content {
     height: 80px;
   }
-} */
+  .buttons {
+    width: 60%;
+  }
+}
+
+@media (max-width: 650px) {
+  .buttons {
+    width: 80%;
+  }
+}
