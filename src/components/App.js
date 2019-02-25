@@ -1,9 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setPage, searchQuery } from "../actions";
+import { withRouter } from "react-router-dom";
 
+import { setPage, searchQuery } from "../actions";
 import Header from "./Header";
 import PostContainer from "./PostContainer";
+import history from "../history";
 import "./App.css";
 
 class App extends React.Component {

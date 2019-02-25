@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setQuery, setPage, searchQuery } from "../actions";
+import { withRouter } from "react-router-dom";
 
+import { setQuery, setPage, searchQuery } from "../actions";
 import SearchOptions from "./SearchOptions";
 import logo from "../images/logo.jpg";
 import search from "../images/search.png";
@@ -17,10 +18,12 @@ class Header extends React.Component {
     return (
       <div className="header">
         <div className="header-bar">
-          <img id="logo" src={logo} alt="logo" />
-          <h3>
-            Hacker News<span style={{ fontSize: "0.8em" }}>...clone</span>
-          </h3>
+          <div className="logo-title">
+            <img id="logo" src={logo} alt="logo" />
+            <h3>
+              Hacker News<span style={{ fontSize: "0.8em" }}>...clone</span>
+            </h3>
+          </div>
           <div className="search">
             <img id="search-icon" src={search} alt="search icon" />
             <input

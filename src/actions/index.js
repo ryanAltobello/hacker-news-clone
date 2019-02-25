@@ -1,5 +1,7 @@
 import algoliaSearch from "../apis/algoliaSearch";
 
+import history from "../history";
+
 export const setPage = page => {
   return {
     type: "SET_PAGE",
@@ -51,10 +53,16 @@ export const searchQuery = () => async (dispatch, getState) => {
     const response = await algoliaSearch.get(
       `/search_by_date?tags=story&numericFilters=created_at_i>${filter}&page=${page}`
     );
+    history.push(
+      `/search_by_date?tags=story&numericFilters=created_at_i>${filter}&page=${page}`
+    );
     dispatch({ type: "FETCH_POSTS", payload: response.data });
   } else if (noquery && sort === "popularity") {
     // POPULARITY WITH NO QUERY
     const response = await algoliaSearch.get(
+      `/search?tags=story&numericFilters=created_at_i>${filter}&page=${page}`
+    );
+    history.push(
       `/search?tags=story&numericFilters=created_at_i>${filter}&page=${page}`
     );
     dispatch({ type: "FETCH_POSTS", payload: response.data });
@@ -63,19 +71,20 @@ export const searchQuery = () => async (dispatch, getState) => {
     const response = await algoliaSearch.get(
       `/search_by_date?query=${query}&tags=story&numericFilters=points>0,created_at_i>${filter}&page=${page}`
     );
+    history.push(
+      `/search_by_date?query=${query}&tags=story&numericFilters=points>0,created_at_i>${filter}&page=${page}`
+    );
     dispatch({ type: "FETCH_POSTS", payload: response.data });
   } else if (query && sort === "popularity") {
     // POPULARITY WITH QUERY
     const response = await algoliaSearch.get(
       `/search?query=${query}&tags=story&numericFilters=points>0,created_at_i>${filter}&page=${page}`
     );
+    history.push(
+      `/search?query=${query}&tags=story&numericFilters=points>0,created_at_i>${filter}&page=${page}`
+    );
     dispatch({ type: "FETCH_POSTS", payload: response.data });
   }
 
-  window.history.pushState(
-    getState(),
-    null,
-    `${getState().searchResponse.params}`
-  );
-  console.log(window.history.state);
+  console.log(history);
 };

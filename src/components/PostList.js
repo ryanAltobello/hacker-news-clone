@@ -1,14 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-// import { withRouter } from "react-router-dom";
 
 class PostList extends React.Component {
-  componentDidMount() {
-    window.onpopstate = e => {
-      window.history.back(e.state);
-    };
-  }
-
   timeCheck(testDate) {
     let timeAgo = "";
     const today = new Date(),
@@ -47,38 +40,79 @@ class PostList extends React.Component {
   renderList = () => {
     if (this.props.searchResponse.hits) {
       return this.props.searchResponse.hits.map(el => {
-        const testDate = new Date(el.created_at_i * 1000);
+        if (!el.url) {
+          return null;
+        } else {
+          const testDate = new Date(el.created_at_i * 1000);
 
-        return (
-          <div className="post-content" key={el.objectID}>
-            <div className="title">{el.title}</div>
-            <div className="post-info">
-              <a
-                href={`https://news.ycombinator.com/item?id=${el.objectID}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >{`${el.points} points`}</a>
-              &nbsp; {` | `} &nbsp;
-              <a
-                href={`https://news.ycombinator.com/user?id=${el.author}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {el.author}
-              </a>
-              &nbsp; {` | `} &nbsp;
-              {this.timeCheck(testDate)}
-              &nbsp; {` | `} &nbsp;
-              <a
-                href={`https://news.ycombinator.com/item?id=${el.objectID}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >{`${el.num_comments} comments`}</a>
-              &nbsp; {` | `} &nbsp;
-              <a href={el.url}>{el.url}</a>
-            </div>
-          </div>
-        );
+          if (window.innerWidth > 650) {
+            return (
+              <div className="post-content" key={el.objectID}>
+                <div className="title">{el.title}</div>
+                <div className="post-info">
+                  <a
+                    href={`https://news.ycombinator.com/item?id=${el.objectID}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >{`${el.points} points`}</a>
+                  &nbsp; {` | `} &nbsp;
+                  <a
+                    href={`https://news.ycombinator.com/user?id=${el.author}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {el.author}
+                  </a>
+                  &nbsp; {` | `} &nbsp;
+                  {this.timeCheck(testDate)}
+                  &nbsp; {` | `} &nbsp;
+                  <a
+                    href={`https://news.ycombinator.com/item?id=${el.objectID}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >{`${el.num_comments} comments`}</a>
+                  &nbsp; {` | `} &nbsp;
+                  <a href={el.url}>{el.url}</a>
+                </div>
+              </div>
+            );
+          } else {
+            let truncatedURL = el.url
+              .split("")
+              .slice(0, 31)
+              .join("");
+            return (
+              <div className="post-content" key={el.objectID}>
+                <div className="title">{el.title}</div>
+                <div className="post-info">
+                  <a
+                    href={`https://news.ycombinator.com/item?id=${el.objectID}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >{`${el.points} points`}</a>
+                  &nbsp; {` | `} &nbsp;
+                  <a
+                    href={`https://news.ycombinator.com/user?id=${el.author}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {el.author}
+                  </a>
+                  &nbsp; {` | `} &nbsp;
+                  {this.timeCheck(testDate)}
+                  &nbsp; {` | `} &nbsp;
+                  <a
+                    href={`https://news.ycombinator.com/item?id=${el.objectID}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >{`${el.num_comments} comments`}</a>
+                  &nbsp; {` | `} &nbsp;
+                  <a href={el.url}>{truncatedURL}...</a>
+                </div>
+              </div>
+            );
+          }
+        }
       });
     }
   };
