@@ -3,4 +3,4 @@ Web app emulating the [Algolia Hacker News](https://hn.algolia.com/) site, to fu
 
 [Live App](https://ryanaltobello.github.io/hacker-news-clone/)
 
-*Note: still working on browser back-button functionality.
+*Note: still working on browser back-button functionality. (2/25/19)
